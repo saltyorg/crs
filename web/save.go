@@ -61,13 +61,17 @@ func (c *Client) Save(g *gin.Context) {
 	g.Request.Body = http.MaxBytesReader(g.Writer, g.Request.Body, c.maxFileSize*1024)
 	file, err := g.FormFile("file")
 	if err != nil {
-		g.AbortWithError(http.StatusBadRequest, fmt.Errorf("file receive: %w", err))
+		status := http.StatusInternalServerError
+		if strings.Contains(err.Error(), "too large") {
+			status = http.StatusRequestEntityTooLarge
+		}
+		g.AbortWithError(status, fmt.Errorf("file receive: %w", err))
 		return
 	}
 
 	// save file
 	if err = g.SaveUploadedFile(file, b.Filepath); err != nil {
-		g.AbortWithError(http.StatusRequestEntityTooLarge, fmt.Errorf("file save: %w", err))
+		g.AbortWithError(http.StatusInternalServerError, fmt.Errorf("file save: %w", err))
 		return
 	}
 
