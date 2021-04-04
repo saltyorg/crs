@@ -11,12 +11,6 @@ import (
 )
 
 func (c *Client) Load(g *gin.Context) {
-	// head request
-	if g.Request.Method == http.MethodHead {
-		g.Status(http.StatusOK)
-		return
-	}
-
 	// parse query
 	b := new(fileRequest)
 	if err := g.ShouldBindUri(b); err != nil {
@@ -43,6 +37,12 @@ func (c *Client) Load(g *gin.Context) {
 		}
 
 		g.AbortWithError(http.StatusInternalServerError, fmt.Errorf("file stat: %w", err))
+		return
+	}
+
+	// head request (dont send file)
+	if g.Request.Method == http.MethodHead {
+		g.Status(http.StatusOK)
 		return
 	}
 
