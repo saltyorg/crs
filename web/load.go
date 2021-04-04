@@ -11,6 +11,12 @@ import (
 )
 
 func (c *Client) Load(g *gin.Context) {
+	// head request
+	if g.Request.Method == http.MethodHead {
+		g.Status(http.StatusOK)
+		return
+	}
+
 	// parse query
 	b := new(fileRequest)
 	if err := g.ShouldBindUri(b); err != nil {
