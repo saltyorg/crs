@@ -59,9 +59,9 @@ func main() {
 		}),
 		kong.Vars{
 			"version":     fmt.Sprintf("%s (%s@%s)", build.Version, build.GitCommit, build.Timestamp),
-			"config_file": filepath.Join(GetDefaultConfigDirectory("crs", "config.yml"), "config.yml"),
-			"upload_path": filepath.Join(GetDefaultConfigDirectory("crs", "config.yml"), "uploads"),
-			"log_file":    filepath.Join(GetDefaultConfigDirectory("crs", "config.yml"), "activity.log"),
+			"config_file": filepath.Join(defaultConfigDirectory("crs", "config.yml"), "config.yml"),
+			"upload_path": filepath.Join(defaultConfigDirectory("crs", "config.yml"), "uploads"),
+			"log_file":    filepath.Join(defaultConfigDirectory("crs", "config.yml"), "activity.log"),
 		},
 	)
 
