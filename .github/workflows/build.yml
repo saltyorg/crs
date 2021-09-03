@@ -120,8 +120,8 @@ jobs:
           pull: true
           push: true
           tags: |
-            cloudb0x/crs:${{ steps.releasetag.outputs.tag }}
-            cloudb0x/crs:latest
+            saltydk/crs:${{ steps.releasetag.outputs.tag }}
+            saltydk/crs:latest
 
       # docker build (branch)
       - name: branch name
@@ -149,7 +149,7 @@ jobs:
           pull: true
           push: true
           tags: |
-            cloudb0x/crs:${{ steps.dockertag.outputs.replaced }}
+            saltydk/crs:${{ steps.dockertag.outputs.replaced }}
 
       # cleanup
       - name: cleanup
