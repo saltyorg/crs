@@ -65,6 +65,7 @@ jobs:
         run: |
           make snapshot
           mv dist/crs_linux_amd64_v1 dist/crs_linux_amd64
+          tree dist
 
       # publish
       - name: publish
@@ -74,6 +75,8 @@ jobs:
           GITHUB_REF: ${{ github.ref }}
         run: |
           make publish
+          mv dist/crs_linux_amd64_v1 dist/crs_linux_amd64
+          tree dist
 
       # artifacts
       - name: artifact_linux
