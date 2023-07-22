@@ -17,9 +17,9 @@ builds:
       - 7
     ldflags:
       - -s -w
-      - -X "github.com/Cloudbox/crs/build.Version={{ .Version }}"
-      - -X "github.com/Cloudbox/crs/build.GitCommit={{ .ShortCommit }}"
-      - -X "github.com/Cloudbox/crs/build.Timestamp={{ .Timestamp }}"
+      - -X "github.com/saltyorg/crs/build.Version={{ .Version }}"
+      - -X "github.com/saltyorg/crs/build.GitCommit={{ .ShortCommit }}"
+      - -X "github.com/saltyorg/crs/build.Timestamp={{ .Timestamp }}"
     flags:
       - -trimpath
 
