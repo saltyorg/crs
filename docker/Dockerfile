@@ -14,10 +14,10 @@ ENV \
 # Binary
 COPY ["dist/crs_${TARGETOS}_${TARGETARCH}${TARGETVARIANT:+_7}/crs", "/app/crs/crs"]
 
-RUN chmod +x /app/crs/crs
-
 # Add root files
 COPY ["docker/run", "/etc/services.d/crs/run"]
+
+RUN chmod +x /etc/services.d/crs/run
 
 # Volume
 VOLUME ["/config"]
