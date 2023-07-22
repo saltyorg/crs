@@ -27,11 +27,6 @@ type fileRequest struct {
 	Filepath  string
 }
 
-type purgeRequest struct {
-	Hash      string `uri:"hash" binding:"required"`
-	Directory string
-}
-
 type fileResponse struct {
 	Message string `json:"msg,omitempty"`
 	Error   bool   `json:"error"`
@@ -51,6 +46,5 @@ func (c *Client) SetHandlers(r *gin.Engine) {
 	r.GET("/load/:hash/:filename", c.WithErrorResponse(c.Load))
 	r.HEAD("/load/:hash/:filename", c.WithErrorResponse(c.Load))
 	r.POST("/save/:hash/:filename", c.WithErrorResponse(c.Save))
-	r.POST("/delete/:hash/:filename", c.WithErrorResponse(c.Delete))
-	r.POST("/delete/:hash/purge", c.WithErrorResponse(c.Purge))
+	r.POST("/delete/:hash", c.WithErrorResponse(c.Delete))
 }
