@@ -38,7 +38,7 @@ ${BUILD_PATH}/${CMD}: ${GO_FILES} go.sum
 	CGO_ENABLED=${CGO} go build \
 		-mod vendor \
 		-trimpath \
-		-ldflags "-s -w -X github.com/Cloudbox/crs/build.Version=${VERSION} -X github.com/Cloudbox/crs/build.GitCommit=${GIT_COMMIT} -X github.com/Cloudbox/crs/build.Timestamp=${TIMESTAMP}" \
+		-ldflags "-s -w -X github.com/saltyorg/crs/build.Version=${VERSION} -X github.com/saltyorg/crs/build.GitCommit=${GIT_COMMIT} -X github.com/saltyorg/crs/build.Timestamp=${TIMESTAMP}" \
 		-o ${BUILD_PATH}/${CMD} \
 		./cmd/crs
 
