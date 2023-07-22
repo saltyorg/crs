@@ -13,9 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # dependencies
-      - name: goreleaser
-        run: |
-          curl -sfL https://install.goreleaser.com/github.com/goreleaser/goreleaser.sh | sudo sh -s -- -b /usr/local/bin
+      - name: Install GoReleaser
+        uses: goreleaser/goreleaser-action@v4
+        with:
+          install-only: true
 
       - name: qemu
         uses: docker/setup-qemu-action@v1
@@ -25,13 +26,13 @@ jobs:
 
       # checkout
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       # setup go
       - name: go
-        uses: actions/setup-go@v1
+        uses: actions/setup-go@v4
         with:
           go-version: 1.16
 
